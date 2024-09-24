@@ -4,70 +4,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Thinkwmesivha</title>
+    <title>Think With Mesivha</title>
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+
+
     <header>
-        <img src="Logo-Designing-removebg-preview.png" alt="logo" width="170" height="170">
-    <h1 >THINK WITH MESIVHA </h1>
+        <img src="Logo-Designing-removebg-preview.png" alt="Company Logo" width="170" height="170">
+        <h1>THINK WITH MESIVHA</h1>
     </header>
-    <br>
-    <nav id="dev">
-        <table>
-            <tr>
-                <td><a href="#home">Home</a></td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                <td>
-                    <label for="services">Services</label>
-                    <select id="services" name="services">
-                        <option value="web-design">Web Design</option>
-                        <option value="seo">SEO</option>
-                        <option value="marketing">Marketing</option>
-                    </select>
-                </td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                <td><a href="#contact">Contact Us</a></td>
-                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                <td><a href="#Help&feedback">Help & feedback</a></td>
-            </tr>
-        </table>
+
+
+    <nav id="main-navigation">
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li>
+                <label for="services">Services:</label>
+                <select id="services" name="services">
+                    <option value="web-design">Web Design</option>
+                    <option value="seo">SEO</option>
+                    <option value="marketing">Marketing</option>
+                </select>
+            </li>
+            <li><a href="#contact">Contact Us</a></li>
+            <li><a href="#feedback">Help & Feedback</a></li>
+        </ul>
     </nav>
-    <br><br><hr>
 
-    <nav id="bca">
+
+    <section id="user-details-form">
         <form action="post">
-            <section class="rev">
-                <label for="Name">Name:</label>
-                <input type="text" name="Name" placeholder="Enter the name here">
-            </section>
-            <div class="rev">
-                <label for="City">City: &nbsp;&nbsp;&nbsp;</label>
-                <input type="text" name="City" placeholder="Enter your City here">
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="Name" placeholder="Enter your name">
             </div>
-            <div class="rev">
-                <label for="Pincode">Pincode:</label>
-                <input type="number" name="Pincode" placeholder="Enter your Pincode here">
+            <div class="form-group">
+                <label for="city">City:</label>
+                <input type="text" id="city" name="City" placeholder="Enter your city">
             </div>
-            <div class="rev">
-                <caption>Select your Gender--</Select></caption>
-                <input type="radio" id="Male" name="Gender" value="Male">
-                <label for="Male"> Male</label>
-
-                <input type="radio" id="Female" name="Gender" value="Female">
-                <label for="Female"> Female</label>
+            <div class="form-group">
+                <label for="pincode">Pincode:</label>
+                <input type="number" id="pincode" name="Pincode" placeholder="Enter your pincode">
+            </div>
+            <div class="form-group">
+                <label>Gender:</label>
+                <input type="radio" id="male" name="Gender" value="Male">
+                <label for="male">Male</label>
+                <input type="radio" id="female" name="Gender" value="Female">
+                <label for="female">Female</label>
             </div>
         </form>
-    </nav>
-    <br><br><br>
-    <div class="vid">
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/Vf6N2J2nSQE?si=9hIEF42oTTMvK1B3&amp;start=11" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-    </div>   
+    </section>
+    
+    <section class="video-section">
+        <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/Vf6N2J2nSQE?si=9hIEF42oTTMvK1B3&amp;start=11"
+            title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+    </section>
+
+
     <footer>
         <p>&copy; 2024 Upcoming Events. All rights reserved.</p>
     </footer>
-    
 
 </body>
+
 </html>
