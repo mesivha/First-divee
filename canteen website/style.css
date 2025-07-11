@@ -1,0 +1,83 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f0b431;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.registration-form {
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    width: 350px;
+}
+.registration-form img{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 170px;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 28px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    font-size: 22px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+.one{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+button{
+
+    text-align: center;
+    font-size: 18px;
+
+}
+input:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.submit-btn:hover {
+    background-color: #218838;
+}
+
+#message {
+    text-align: center;
+    margin-top: 20px;
+}
+
+#error {
+    color: #dc3545;
+}
+
+#success {
+    color: #28a745;
+}

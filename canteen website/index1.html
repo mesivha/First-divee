@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>College Canteens</title>
+    <link rel="stylesheet" href="style1.css">
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <img src="Scribbles.png" alt="logo">
+            <h1>ABES Engineering College</h1>
+        </div>
+        <div class="naam">
+            <h2>e-Canteen</h2>
+        </div>
+
+        <div class="canteen-selector">
+            <label for="canteen-select">Select Canteen:</label>
+            <select id="canteen-select" onchange="showMenu()">
+                <option value="">Choose a canteen</option>
+                <option value="canteen1">Gauri Cafe</option>
+                <option value="canteen2">Tea man's cafe</option>
+            </select>
+        </div>
+
+        <div class="canteen-images">
+            <img src="gauri.jpg" alt="Canteen 1" class="canteen-image">
+            <img src="IMG20250121114138_BURST001.jpg" alt="Canteen 2" class="canteen-image">
+        </div>
+
+        <div class="payment-notice">
+            <strong>Notice:</strong> We accept online payments only. No cash payments available.
+        </div>
+
+        <div id="menu-canteen1" class="menu-container">
+            <h2>Canteen 1 Menu</h2>
+            <div class="menu-items">
+                <!-- Sample menu items for Canteen 1 -->
+
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Sandwich</h3>
+                        <p>Fresh vegetable sandwich with cheese</p>
+                    </div>
+                    <span class="item-price">₹50</span>
+                    <div class="quantity-selector">
+                        <button onclick="updateQuantity(this, -1)">-</button>
+                        <span class="quantity">0</span>
+                        <button onclick="updateQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Samosa</h3>
+                        <p>Fresh crispy samosa served with chutney</p>
+                    </div>
+                    <span class="item-price">₹15</span>
+                    <div class="quantity-selector">
+                        <button onclick="updateQuantity(this, -1)">-</button>
+                        <span class="quantity">0</span>
+                        <button onclick="updateQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Chole Bhature</h3>
+                        <p>Desi style chole, with fresh and fluffy Bhature</p>
+                    </div>
+                    <span class="item-price">₹70</span>
+                    <div class="quantity-selector">
+                        <button onclick="updateQuantity(this, -1)">-</button>
+                        <span class="quantity">0</span>
+                        <button onclick="updateQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+                <!-- Add more menu items here -->
+            </div>
+        </div>
+
+        <div id="menu-canteen2" class="menu-container">
+            <h2>Canteen 2 Menu</h2>
+            <div class="menu-items">
+                <!-- Sample menu items for Canteen 2 -->
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Pizza</h3>
+                        <p>Fresh vegetable pizza with extra cheese</p>
+                    </div>
+                    <span class="item-price">₹120</span>
+                    <div class="quantity-selector">
+                        <button onclick="updateQuantity(this, -1)">-</button>
+                        <span class="quantity">0</span>
+                        <button onclick="updateQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Aloo Patties</h3>
+                        <p>Fresh patties </p>
+                    </div>
+                    <span class="item-price">₹35</span>
+                    <div class="quantity-selector">
+                        <button onclick="updateQuantity(this, -1)">-</button>
+                        <span class="quantity">0</span>
+                        <button onclick="updateQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Paneer Patties</h3>
+                        <p>Fresh patties</p>
+                    </div>
+                    <span class="item-price">₹35</span>
+                    <div class="quantity-selector">
+                        <button onclick="updateQuantity(this, -1)">-</button>
+                        <span class="quantity">0</span>
+                        <button onclick="updateQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+                <div class="menu-item">
+                    <div class="item-details">
+                        <h3>Paneer Parantha</h3>
+                        <p>Fresh vegetable parantha stuffed with paneer and served with pickle</p>
+                    </div>
+                    <span class="item-price">₹70</span>
+                    <div class="quantity-selector">
+                        <button onclick="updateQuantity(this, -1)">-</button>
+                        <span class="quantity">0</span>
+                        <button onclick="updateQuantity(this, 1)">+</button>
+                    </div>
+                </div>
+                <!-- Add more menu items here -->
+            </div>
+        </div>
+
+        <div class="order-summary" id="order-summary" style="display: none;">
+            <h2>Order Summary</h2>
+            <div id="selected-items"></div>
+            <div id="total-amount"></div>
+            <button onclick="placeOrder()">Place Order</button>
+        </div>
+    </div>
+
+    <script>
+        function showMenu() {
+            const selectedCanteen = document.getElementById('canteen-select').value;
+            document.querySelectorAll('.menu-container').forEach(menu => {
+                menu.style.display = 'none';
+            });
+            if (selectedCanteen) {
+                document.getElementById(`menu-${selectedCanteen}`).style.display = 'block';
+                document.getElementById('order-summary').style.display = 'block';
+            }
+        }
+
+        function updateQuantity(button, change) {
+            const quantityElement = button.parentElement.querySelector('.quantity');
+            let quantity = parseInt(quantityElement.textContent);
+            quantity = Math.max(0, quantity + change);
+            quantityElement.textContent = quantity;
+            updateOrderSummary();
+        }
+
+        function updateOrderSummary() {
+            const selectedItems = [];
+            let totalAmount = 0;
+
+            document.querySelectorAll('.menu-item').forEach(item => {
+                const quantity = parseInt(item.querySelector('.quantity').textContent);
+                if (quantity > 0) {
+                    const name = item.querySelector('h3').textContent;
+                    const price = parseInt(item.querySelector('.item-price').textContent.replace('₹', ''));
+                    const itemTotal = price * quantity;
+                    selectedItems.push(`${name} x${quantity} - ₹${itemTotal}`);
+                    totalAmount += itemTotal;
+                }
+            });
+
+            const selectedItemsDiv = document.getElementById('selected-items');
+            const totalAmountDiv = document.getElementById('total-amount');
+
+            selectedItemsDiv.innerHTML = selectedItems.join('<br>');
+            totalAmountDiv.innerHTML = `<strong>Total Amount: ₹${totalAmount}</strong>`;
+        }
+
+        function placeOrder() {
+            const totalAmount = document.getElementById('total-amount').textContent;
+            if (totalAmount === '') {
+                alert('Please select items to order');
+                return;
+            }
+            alert('Redirecting to payment gateway...');
+            // Add payment gateway integration here
+        }
+    </script>
+</body>
+
+</html>
