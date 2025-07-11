@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="icon" href="avi3.jpg" type="image/x-icon">
+    <link rel="stylesheet" href="">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="style.css">
+    <script>
+
+        function validateName(name) {
+            const nameRegex = /^[a-zA-Z ]+$/;
+            return nameRegex.test(name);
+        }
+
+
+        function validateUsername(username) {
+            const usernameRegex = /^[a-zA-Z]{6,}$/;
+            return usernameRegex.test(username);
+        }
+
+        function validatePassword(password) {
+            const passwordRegex = /^(?=.[a-zA-Z])(?=.\d)(?=.[@$!%?&#])[A-Za-z\d@$!%*?&#]{6,}$/;
+            return passwordRegex.test(password);
+        }
+
+
+        function validateEmail(email) {
+            const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+            return emailRegex.test(email);
+        }
+
+
+        function validatePhoneNumber(phoneNumber) {
+            const phoneRegex = /^\d{10}$/;
+            return phoneRegex.test(phoneNumber);
+        }
+
+
+        window.onload = function () {
+            const form = document.querySelector("form");
+
+            form.addEventListener("submit", function (event) {
+                const name = document.getElementById("name").value;
+                const password = document.querySelector("input[name='pass']").value;
+                const email = document.getElementById("Email").value;
+                const phoneNumber = document.getElementById("Phone number").value;
+
+                let isValid = true;
+
+                if (!validateName(name)) {
+                    alert("Invalid name. Name should only contain alphabets and spaces.");
+                    isValid = false;
+                }
+
+                if (!validatePassword(password)) {
+                    alert("Invalid password. Password must be at least 6 characters long, alphanumeric, and include a special symbol.");
+                    isValid = false;
+                }
+
+                if (!validateEmail(email)) {
+                    alert("Invalid email. Please enter a valid email address.");
+                    isValid = false;
+                }
+
+                if (!validatePhoneNumber(phoneNumber)) {
+                    alert("Invalid phone number. Phone number must contain exactly 10 digits.");
+                    isValid = false;
+                }
+
+                if (!isValid) {
+                    event.preventDefault();
+                }
+            });
+        };
+
+    </script>
+</head>
+
+<body>
+    <nav>
+        <li>
+            <ul>Home</ul>
+            <ul>Services</ul>
+            <ul>Know more</ul>
+            <ul>Return to home page</ul>
+        </li>
+    </nav>
+    
+    <div class="container">
+        <h2>REGISTRATION FORM</h2>
+        <div class="box">
+        <form action="https://api.web3forms.com/submit" method="POST">
+            <input type="hidden" name="access_key" value="99e51dd5-79bf-43e9-ab1e-6b2dc5bc0b05">
+            <div>
+                Name: <input type="text" name="Myname" placeholder="Enter your name" id="name">
+            </div>
+            <br>
+            <div>
+                Password: <input type="password" name="pass" id="password">
+                <div id="strength"></div>
+            </div>
+            <br>
+            <div>
+                E-mail: <input type="text" name="My Email" id="Email" placeholder="Enter your email">
+            </div>
+            <br>
+            <div>
+                Phone Number: <input type="number" name="Phone number" id="Phone number">
+            </div>
+            <br>
+            <div>
+                DOB: <input type="date" name="my date">
+            </div>
+            <br>
+            <div>
+                Gender:
+                <br>
+                <input type="radio" name="my gender"> Male
+                <br>
+                <input type="radio" name="my gender"> Female
+            </div>
+            <br>
+            <label for="select your branch">CHOOSE YOUR LANGUAGE</label>
+            <div>
+                <input type="checkbox" name="CSE"> English
+                <br>
+                <input type="checkbox" name="CSE-DS"> Telugu
+                <br>
+                <input type="checkbox" name="CS"> Hindi
+                <br>
+                <input type="checkbox" name="AIML"> Tamil
+            </div>
+            <br>
+            <div>
+                Address: <br> <textarea name="myText" cols="30" rows="10"></textarea>
+            </div>
+            <br>
+            <div>
+                <button type="submit">Submit</button>
+                <input type="reset" value="Reset Now">
+            </div>
+        </form>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
