@@ -141,7 +141,7 @@
     function resetState() {
       clearInterval(timerInterval);
       timeLeft = 30;
-      timerEl.textContent = Time: ${timeLeft}s;
+      timerEl.textContent = `Time: ${timeLeft}s`;
       answerButtons.innerHTML = "";
     }
 
@@ -157,16 +157,16 @@
 
     function showScore() {
       questionEl.textContent = "Quiz Completed!";
-      scoreEl.textContent = Your Score: ${score} / ${questions.length};
+      scoreEl.textContent = `Your Score: ${score} / ${questions.length}`;
       restartBtn.style.display = "block";
       timerEl.textContent = "";
     }
 
     function startTimer() {
-      timerEl.textContent = Time: ${timeLeft}s;
+      timerEl.textContent = `Time: ${timeLeft}s`;
       timerInterval = setInterval(() => {
         timeLeft--;
-        timerEl.textContent = Time: ${timeLeft}s;
+        timerEl.textContent = `Time: ${timeLeft}s`;
         if (timeLeft <= 0) {
           clearInterval(timerInterval);
           selectAnswer(false); // Auto move to next if time runs out
