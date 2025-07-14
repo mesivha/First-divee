@@ -8,7 +8,7 @@ let form = document.querySelector("#registrationForm");
 form.addEventListener("submit", (event) => {
     event.preventDefault(); // Prevent default form submission
     if (userName === user.value && password === pass.value) {
-        window.location.href = "http://127.0.0.1:5500/Web%20Dev/canteen%20website/index1.html";
+        window.location.href = "index1.html";
     } else {
         alert("Invalid Username or Password");
     }
