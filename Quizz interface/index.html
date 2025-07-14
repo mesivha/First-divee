@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Quiz App with Timer</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #636b73;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+
+    .quiz-container {
+      background: rgb(255, 236, 61);
+      padding: 30px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      width: 300px;
+      text-align: center;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .btn {
+      display: block;
+      background: #007bff;
+      color: white;
+      border: none;
+      padding: 10px;
+      margin: 10px 0;
+      border-radius: 5px;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn:hover {
+      background: #0056b3;
+    }
+
+    #score {
+      font-size: 18px;
+      margin-top: 20px;
+    }
+
+    #restart {
+      display: none;
+      margin-top: 10px;
+    }
+
+    #timer {
+      font-weight: bold;
+      margin-bottom: 10px;
+      color: #ff5722;
+    }
+  </style>
+</head>
+<body>
+  <div class="quiz-container">
+    <div id="timer">Time: 30s</div>
+    <h2 id="question">Loading...</h2>
+    <div id="answer-buttons"></div>
+    <div id="score"></div>
+    <button id="restart" class="btn">Restart Quiz</button>
+  </div>
+
+  <script>
+    const questions = [
+      {
+        question: "What is the capital of France?",
+        answers: [
+          { text: "Berlin", correct: false },
+          { text: "Madrid", correct: false },
+          { text: "Paris", correct: true },
+          { text: "Lisbon", correct: false}
+        ]
+      },
+      {
+        question: "Which language is used for web apps?",
+        answers: [
+          { text: "PHP", correct: false },
+          { text: "Python", correct: false },
+          { text: "JavaScript", correct: true },
+          { text: "C++", correct: false }
+        ]
+      },
+      {
+        question: "Which planet is known as the Red Planet?",
+        answers: [
+          { text: "Earth", correct: false },
+          { text: "Mars", correct: true },
+          { text: "Jupiter", correct: false },
+          { text: "Venus", correct: false }
+        ]
+      }
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let timerInterval;
+    let timeLeft = 30;
+
+    const questionEl = document.getElementById("question");
+    const answerButtons = document.getElementById("answer-buttons");
+    const scoreEl = document.getElementById("score");
+    const restartBtn = document.getElementById("restart");
+    const timerEl = document.getElementById("timer");
+
+    function startQuiz() {
+      currentQuestionIndex = 0;
+      score = 0;
+      scoreEl.textContent = "";
+      restartBtn.style.display = "none";
+      showQuestion();
+    }
+
+    function showQuestion() {
+      resetState();
+      const currentQuestion = questions[currentQuestionIndex];
+      questionEl.textContent = currentQuestion.question;
+
+      currentQuestion.answers.forEach(answer => {
+        const button = document.createElement("button");
+        button.textContent = answer.text;
+        button.classList.add("btn");
+        button.onclick = () => {
+          clearInterval(timerInterval);
+          selectAnswer(answer.correct);
+        };
+        answerButtons.appendChild(button);
+      });
+
+      startTimer();
+    }
+
+    function resetState() {
+      clearInterval(timerInterval);
+      timeLeft = 30;
+      timerEl.textContent = Time: ${timeLeft}s;
+      answerButtons.innerHTML = "";
+    }
+
+    function selectAnswer(correct) {
+      if (correct) score++;
+      currentQuestionIndex++;
+      if (currentQuestionIndex < questions.length) {
+        showQuestion();
+      } else {
+        showScore();
+      }
+    }
+
+    function showScore() {
+      questionEl.textContent = "Quiz Completed!";
+      scoreEl.textContent = Your Score: ${score} / ${questions.length};
+      restartBtn.style.display = "block";
+      timerEl.textContent = "";
+    }
+
+    function startTimer() {
+      timerEl.textContent = Time: ${timeLeft}s;
+      timerInterval = setInterval(() => {
+        timeLeft--;
+        timerEl.textContent = Time: ${timeLeft}s;
+        if (timeLeft <= 0) {
+          clearInterval(timerInterval);
+          selectAnswer(false); // Auto move to next if time runs out
+        }
+      }, 1000);
+    }
+
+    restartBtn.addEventListener("click", startQuiz);
+
+    // Start quiz on page load
+    startQuiz();
+  </script>
+</body>
+</html>
