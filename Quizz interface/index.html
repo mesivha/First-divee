@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Quiz App with Timer</title>
+  <title>Quiz App</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -13,7 +13,6 @@
       align-items: center;
       height: 100vh;
     }
-
     .quiz-container {
       background: rgb(255, 236, 61);
       padding: 30px;
@@ -22,11 +21,9 @@
       width: 300px;
       text-align: center;
     }
-
     h2 {
       margin-bottom: 20px;
     }
-
     .btn {
       display: block;
       background: #007bff;
@@ -38,21 +35,17 @@
       cursor: pointer;
       width: 100%;
     }
-
     .btn:hover {
       background: #0056b3;
     }
-
     #score {
       font-size: 18px;
       margin-top: 20px;
     }
-
     #restart {
       display: none;
       margin-top: 10px;
     }
-
     #timer {
       font-weight: bold;
       margin-bottom: 10px;
@@ -77,7 +70,7 @@
           { text: "Berlin", correct: false },
           { text: "Madrid", correct: false },
           { text: "Paris", correct: true },
-          { text: "Lisbon", correct: false}
+          { text: "Lisbon", correct: false }
         ]
       },
       {
@@ -121,20 +114,18 @@
 
     function showQuestion() {
       resetState();
-      const currentQuestion = questions[currentQuestionIndex];
-      questionEl.textContent = currentQuestion.question;
-
-      currentQuestion.answers.forEach(answer => {
-        const button = document.createElement("button");
-        button.textContent = answer.text;
-        button.classList.add("btn");
-        button.onclick = () => {
+      const current = questions[currentQuestionIndex];
+      questionEl.textContent = current.question;
+      current.answers.forEach(ans => {
+        const btn = document.createElement("button");
+        btn.textContent = ans.text;
+        btn.classList.add("btn");
+        btn.onclick = () => {
           clearInterval(timerInterval);
-          selectAnswer(answer.correct);
+          selectAnswer(ans.correct);
         };
-        answerButtons.appendChild(button);
+        answerButtons.appendChild(btn);
       });
-
       startTimer();
     }
 
@@ -148,11 +139,7 @@
     function selectAnswer(correct) {
       if (correct) score++;
       currentQuestionIndex++;
-      if (currentQuestionIndex < questions.length) {
-        showQuestion();
-      } else {
-        showScore();
-      }
+      currentQuestionIndex < questions.length ? showQuestion() : showScore();
     }
 
     function showScore() {
@@ -169,14 +156,12 @@
         timerEl.textContent = `Time: ${timeLeft}s`;
         if (timeLeft <= 0) {
           clearInterval(timerInterval);
-          selectAnswer(false); // Auto move to next if time runs out
+          selectAnswer(false);
         }
       }, 1000);
     }
 
     restartBtn.addEventListener("click", startQuiz);
-
-    // Start quiz on page load
     startQuiz();
   </script>
 </body>
